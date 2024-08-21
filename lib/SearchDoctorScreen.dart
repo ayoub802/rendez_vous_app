@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 import 'package:rendez_vous/widget/DoctorCard.dart';
 
 class SearchDoctorScreen extends StatelessWidget {
@@ -7,9 +8,10 @@ class SearchDoctorScreen extends StatelessWidget {
   final FocusNode _disponibiliteFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chercher un Pro'),
+        title: Text(localizations.translate('search_doctor_title') ?? ""),
         backgroundColor: Color(0xFFF7F7F9), // Background color for the AppBar
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -25,7 +27,7 @@ class SearchDoctorScreen extends StatelessWidget {
                 children: <Widget>[
                   // Métier Dropdown
                   Text(
-                    'Filtres',
+                    localizations.translate('filters') ?? "",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 20.0, // 1.25rem = 20px
@@ -45,7 +47,7 @@ class SearchDoctorScreen extends StatelessWidget {
                       // Add more items as needed
                     ],
                     decoration: InputDecoration(
-                      labelText: 'Métier',
+                      labelText: localizations.translate('job_label') ?? "",
                       labelStyle: TextStyle(
                         color: _metierFocusNode.hasFocus
                             ? Colors.blue // Color when focused
@@ -79,7 +81,8 @@ class SearchDoctorScreen extends StatelessWidget {
                       // Add more items as needed
                     ],
                     decoration: InputDecoration(
-                      labelText: 'Localisation',
+                      labelText:
+                          localizations.translate('location_label') ?? "",
                       labelStyle: TextStyle(
                         color: _localisationFocusNode.hasFocus
                             ? Colors.blue // Color when focused
@@ -112,7 +115,7 @@ class SearchDoctorScreen extends StatelessWidget {
                       // Add more items as needed
                     ],
                     decoration: InputDecoration(
-                      labelText: 'Disponibilité',
+                      labelText: localizations.translate('availability') ?? "",
                       labelStyle: TextStyle(
                         color: _disponibiliteFocusNode.hasFocus
                             ? Colors.blue // Color when focused

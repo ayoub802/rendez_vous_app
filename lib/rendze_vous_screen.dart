@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 import 'package:rendez_vous/widget/CompteTab.dart';
 import 'package:rendez_vous/widget/Historique.dart';
 import 'package:rendez_vous/widget/RendezVous.dart';
@@ -40,11 +41,12 @@ class CustomTab extends StatelessWidget {
 class RendezVousScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return DefaultTabController(
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Rendez Vous'),
+          title: Text(localizations.translate('rendezvous_title') ?? ""),
           automaticallyImplyLeading: false,
 
           bottom: TabBar(
@@ -55,14 +57,14 @@ class RendezVousScreen extends StatelessWidget {
             indicatorWeight: 3.0, // Thickness of the tab indicator
             tabs: [
               CustomTab(
-                text: 'Mes Rendez-vous',
+                text: localizations.translate('tab_my_appointments') ?? "",
                 icon: FaIcon(
                   FontAwesomeIcons.clock,
                   size: 20,
                 ),
               ),
               CustomTab(
-                text: 'Historique',
+                text: localizations.translate('tab_history') ?? "",
                 icon: FaIcon(
                   FontAwesomeIcons.pen,
                   size: 15,

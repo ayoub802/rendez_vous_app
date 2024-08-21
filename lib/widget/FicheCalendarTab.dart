@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -117,6 +118,7 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
         ),
       ),
       builder: (BuildContext context) {
+        final localizations = AppLocalizations.of(context)!;
         return Container(
           decoration: BoxDecoration(
             color: Colors.white, // Set your desired background color here
@@ -136,7 +138,8 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
               children: <Widget>[
                 SizedBox(height: 5),
                 Text(
-                  'Add Event'.toUpperCase(), // Title text
+                  localizations.translate('add_event')?.toUpperCase() ??
+                      "", // Title text
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 20, // Adjust the font size as needed
@@ -148,7 +151,8 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                   controller: _titleController,
                   focusNode: _titleFocusNode,
                   decoration: InputDecoration(
-                    labelText: 'Title',
+                    labelText:
+                        localizations.translate('titre')?.toUpperCase() ?? "",
                     labelStyle: TextStyle(
                       color: _titleFocusNode.hasFocus
                           ? Colors.blue // Color when focused
@@ -183,7 +187,9 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                     );
                   }).toList(),
                   decoration: InputDecoration(
-                    labelText: 'Calendar',
+                    labelText:
+                        localizations.translate('calendar')?.toUpperCase() ??
+                            "",
                     labelStyle: TextStyle(
                       color: _calendarFocusNode.hasFocus
                           ? Colors.blue // Color when focused
@@ -213,8 +219,11 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                       focusNode: _startDayFocusNode,
                       decoration: InputDecoration(
                         labelText: _startDate == null
-                            ? 'Start Date'
-                            : 'Start Date: ${_startDate!.toLocal()}'
+                            ? localizations
+                                    .translate('start_date')
+                                    ?.toUpperCase() ??
+                                ""
+                            : '${localizations.translate("start_date")?.toUpperCase() ?? ""}: ${_startDate!.toLocal()}'
                                 .split(' ')[0],
                         labelStyle: TextStyle(
                           color: _startDayFocusNode.hasFocus
@@ -247,8 +256,12 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                       focusNode: _endDayFocusNode,
                       decoration: InputDecoration(
                         labelText: _endDate == null
-                            ? 'End Date'
-                            : 'End Date: ${_endDate!.toLocal()}'.split(' ')[0],
+                            ? localizations
+                                    .translate('start_date')
+                                    ?.toUpperCase() ??
+                                ""
+                            : '${localizations.translate('start_date')?.toUpperCase() ?? ""}: ${_endDate!.toLocal()}'
+                                .split(' ')[0],
                         labelStyle: TextStyle(
                           color: _endDayFocusNode.hasFocus
                               ? Colors.blue // Color when focused
@@ -285,7 +298,8 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                       },
                     ),
                     SizedBox(width: 10),
-                    Text('All Day'),
+                    Text(localizations.translate('all_day')?.toUpperCase() ??
+                        ""),
                   ],
                 ),
                 SizedBox(height: 10),
@@ -293,7 +307,9 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                   controller: _urlController,
                   focusNode: _eventFocusNode,
                   decoration: InputDecoration(
-                    labelText: 'Event URL',
+                    labelText:
+                        localizations.translate('event_url')?.toUpperCase() ??
+                            "",
                     labelStyle: TextStyle(
                       color: _eventFocusNode.hasFocus
                           ? Colors.blue // Color when focused
@@ -327,7 +343,8 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                     );
                   }).toList(),
                   decoration: InputDecoration(
-                    labelText: 'Guests',
+                    labelText:
+                        localizations.translate('guests')?.toUpperCase() ?? "",
                     labelStyle: TextStyle(
                       color: _guestFocusNode.hasFocus
                           ? Colors.blue // Color when focused
@@ -355,7 +372,9 @@ class _FicheCalendarTabState extends State<FicheCalendarTab> {
                   focusNode: _descriptionFocusNode,
                   maxLines: 5,
                   decoration: InputDecoration(
-                    labelText: 'Description',
+                    labelText:
+                        localizations.translate('description')?.toUpperCase() ??
+                            "",
                     alignLabelWithHint:
                         true, // Aligns the label with the start of the input text
                     labelStyle: TextStyle(

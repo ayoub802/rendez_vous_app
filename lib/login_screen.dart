@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'forgetPassword.dart';
 import 'inscriptions.dart';
 import 'dashboard.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -40,7 +41,8 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Bienvenue sur RENDEZ_VOUS!👋🏻 ',
+              AppLocalizations.of(context)?.translate('welcome_message') ??
+                  'Bienvenue sur RENDEZ_VOUS!👋🏻 ',
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -53,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 2),
             Text(
-              'Veuillez vous connecter afin d’accèder à votre espace ',
+              AppLocalizations.of(context)?.translate('login_prompt') ??
+                  'Veuillez vous connecter afin d’accèder à votre espace ',
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -68,7 +71,9 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               focusNode: _emailFocusNode,
               decoration: InputDecoration(
-                labelText: 'Email ou numéro de téléphone',
+                labelText:
+                    AppLocalizations.of(context)?.translate('email_or_phone') ??
+                        'Email ou numéro de téléphone',
                 labelStyle: TextStyle(
                   color: _emailFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -94,7 +99,9 @@ class _LoginPageState extends State<LoginPage> {
               focusNode: _passwordFocusNode,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText:
+                    AppLocalizations.of(context)?.translate('password') ??
+                        'Password',
                 labelStyle: TextStyle(
                   color: _passwordFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -137,7 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                     //     width:
                     //         5), // Adjust spacing between the Checkbox and Text
                     Text(
-                      'Se souvenir de moi',
+                      AppLocalizations.of(context)?.translate('remember_me') ??
+                          'Se souvenir de moi',
                     ),
                   ],
                 ),
@@ -150,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    'Mot de passe oublié ?',
+                    AppLocalizations.of(context)
+                            ?.translate('forgot_password') ??
+                        'Mot de passe oublié ?',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.blue,
@@ -170,7 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               child: Text(
-                'SE CONNECTER',
+                AppLocalizations.of(context)?.translate('login_connect') ??
+                    'SE CONNECTER',
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -207,7 +218,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 20),
             Text(
-              'Vous n’avez pas compte ?',
+              AppLocalizations.of(context)?.translate('no_account') ??
+                  'Vous n’avez pas compte ?',
               style: TextStyle(
                 fontSize: 14,
                 color: Color.fromRGBO(76, 78, 100, 0.6),
@@ -223,7 +235,8 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               child: Text(
-                'Créez un compte',
+                AppLocalizations.of(context)?.translate('create_account') ??
+                    'Créez un compte',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.blue,
@@ -232,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Text('or'),
+            Text(AppLocalizations.of(context)?.translate('or') ?? ""),
             SizedBox(height: 20),
             Container(
               width: MediaQuery.of(context).size.width *

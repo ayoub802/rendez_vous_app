@@ -9,6 +9,7 @@ import 'dashboard.dart';
 import 'forgetPassword.dart';
 import 'compte.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate,
       ],
       supportedLocales: [
         const Locale('en', ''), // English

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login_screen.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class InscriptionPage extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class _InscriptionPageState extends State<InscriptionPage> {
   FocusNode _passwordFocusNode = FocusNode();
   FocusNode _phoneFocusNode = FocusNode();
   bool _isChecked = false;
-
   @override
   void initState() {
     super.initState();
@@ -47,6 +47,8 @@ class _InscriptionPageState extends State<InscriptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,7 +58,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             Align(
               alignment: Alignment.centerLeft, // Aligns the text to the left
               child: Text(
-                'Démarrez l’aventure 🚀 ',
+                localizations.translate('start_adventure') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -72,7 +74,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             Align(
               alignment: Alignment.centerLeft, // Aligns the text to the left
               child: Text(
-                'La gestion de votre planning devient un plaisir',
+                localizations.translate('planning_management') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -88,7 +90,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             TextField(
               focusNode: _nomFocusNode,
               decoration: InputDecoration(
-                labelText: 'Nom d’utilisateur',
+                labelText: localizations.translate('username') ?? "",
                 labelStyle: TextStyle(
                   color: _nomFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -113,7 +115,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             TextField(
               focusNode: _emailFocusNode,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: localizations.translate('email') ?? "",
                 labelStyle: TextStyle(
                   color: _emailFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -138,7 +140,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             TextField(
               focusNode: _phoneFocusNode,
               decoration: InputDecoration(
-                labelText: 'Téléhpone',
+                labelText: localizations.translate('phone') ?? "",
                 labelStyle: TextStyle(
                   color: _phoneFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -163,7 +165,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             TextField(
               focusNode: _vousetesFocusNode,
               decoration: InputDecoration(
-                labelText: 'Vous êtes ?',
+                labelText: localizations.translate('are_you'),
                 labelStyle: TextStyle(
                   color: _vousetesFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -189,7 +191,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
               focusNode: _passwordFocusNode,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: localizations.translate('password'),
                 labelStyle: TextStyle(
                   color: _passwordFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -229,7 +231,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
                     // SizedBox(
                     //     width:
                     //         5), // Adjust spacing between the Checkbox and Text
-                    Text('J’accepte les conditions d’utilisations'),
+                    Text(localizations.translate('accept_terms') ?? ""),
                   ],
                 ),
               ],
@@ -242,7 +244,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
                 );
               },
               child: Text(
-                'SE CONNECTER',
+                localizations.translate('signup_inc') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -279,7 +281,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
             ),
             SizedBox(height: 20),
             Text(
-              'Vous avez déjà un compte ?',
+              localizations.translate('already_have_account') ?? "",
               style: TextStyle(
                 fontSize: 14,
                 color: Color.fromRGBO(76, 78, 100, 0.6),
@@ -295,7 +297,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
                 );
               },
               child: Text(
-                'Connectez-vous ici',
+                localizations.translate('login_here') ?? "",
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.blue,
@@ -304,7 +306,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
                 ),
               ),
             ),
-            Text('or'),
+            Text(localizations.translate('or') ?? ""),
             SizedBox(height: 20),
             Container(
               width: MediaQuery.of(context).size.width *

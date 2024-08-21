@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class CompteTab extends StatefulWidget {
   @override
@@ -57,6 +58,8 @@ class _CompteTabState extends State<CompteTab> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -80,7 +83,11 @@ class _CompteTabState extends State<CompteTab> {
                       onPressed: () {
                         // Handle appointment scheduling here
                       },
-                      child: Text('charger une photo'.toUpperCase(),
+                      child: Text(
+                          localizations
+                                  .translate('upload_photo')
+                                  ?.toUpperCase() ??
+                              "",
                           style: TextStyle(
                             fontFamily:
                                 'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -107,7 +114,9 @@ class _CompteTabState extends State<CompteTab> {
                       onPressed: () {
                         // Handle appointment scheduling here
                       },
-                      child: Text('supprimer'.toUpperCase(),
+                      child: Text(
+                          localizations.translate('delete')?.toUpperCase() ??
+                              "",
                           style: TextStyle(
                             fontFamily:
                                 'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -136,7 +145,7 @@ class _CompteTabState extends State<CompteTab> {
                     ),
                     SizedBox(height: 2.0),
                     Text(
-                      'Format autorisé JPG, GIF ou PNG.\nTaille max de 800K',
+                      localizations.translate('photo_format') ?? "",
                       style: TextStyle(
                         fontSize: 14,
                         color: Color.fromRGBO(76, 78, 100, 0.6),
@@ -157,7 +166,7 @@ class _CompteTabState extends State<CompteTab> {
             TextField(
               focusNode: _adressFocusNode,
               decoration: InputDecoration(
-                labelText: 'Utilisateur',
+                labelText: localizations.translate('username') ?? "",
                 labelStyle: TextStyle(
                   color: _adressFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -182,7 +191,7 @@ class _CompteTabState extends State<CompteTab> {
             TextField(
               focusNode: _telephoneFocusNode,
               decoration: InputDecoration(
-                labelText: 'Nom',
+                labelText: localizations.translate('last_name') ?? "",
                 labelStyle: TextStyle(
                   color: _telephoneFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -207,7 +216,7 @@ class _CompteTabState extends State<CompteTab> {
             TextField(
               focusNode: _specialieFocusNode,
               decoration: InputDecoration(
-                labelText: 'Prénom',
+                labelText: localizations.translate('first_name') ?? "",
                 labelStyle: TextStyle(
                   color: _specialieFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -232,7 +241,7 @@ class _CompteTabState extends State<CompteTab> {
             TextField(
               focusNode: _moyenFocusNode,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: localizations.translate('email') ?? "",
                 labelStyle: TextStyle(
                   color: _moyenFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -253,11 +262,12 @@ class _CompteTabState extends State<CompteTab> {
                 ),
               ),
             ),
+
             SizedBox(height: 15.0),
             TextField(
               focusNode: _specialieFocusNode,
               decoration: InputDecoration(
-                labelText: 'Prénom',
+                labelText: localizations.translate('password') ?? "",
                 labelStyle: TextStyle(
                   color: _specialieFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -282,32 +292,7 @@ class _CompteTabState extends State<CompteTab> {
             TextField(
               focusNode: _specialieFocusNode,
               decoration: InputDecoration(
-                labelText: 'Mot de passe',
-                labelStyle: TextStyle(
-                  color: _specialieFocusNode.hasFocus
-                      ? Colors.blue // Color when focused
-                      : Colors.grey, // Color when not focused
-                ),
-                contentPadding: EdgeInsets.only(left: 15, top: 19, bottom: 19),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xFFe5e7eb)),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
-              ),
-            ),
-            SizedBox(height: 15.0),
-            TextField(
-              focusNode: _specialieFocusNode,
-              decoration: InputDecoration(
-                labelText: 'Téléphone',
+                labelText: localizations.translate('phone') ?? "",
                 labelStyle: TextStyle(
                   color: _specialieFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -340,7 +325,7 @@ class _CompteTabState extends State<CompteTab> {
                     ListTile(
                       leading: Icon(Icons.star, size: 60, color: Colors.red),
                       title: Text(
-                          'Votre email n\'est pas confirmé. Vérifiez votre boîte email.',
+                          localizations.translate('email_not_confirmed') ?? "",
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -354,7 +339,9 @@ class _CompteTabState extends State<CompteTab> {
                     ButtonBar(
                       children: <Widget>[
                         TextButton(
-                          child: Text('Envoyé à Nouveau La Confirmation',
+                          child: Text(
+                              localizations.translate('resend_confirmation') ??
+                                  "",
                               style: TextStyle(color: Color(0xffFDB528))),
                           onPressed: () {
                             // Insert your resend confirmation logic here
@@ -372,7 +359,7 @@ class _CompteTabState extends State<CompteTab> {
               onPressed: () {
                 // Handle appointment scheduling here
               },
-              child: Text('modifier'.toUpperCase(),
+              child: Text(localizations.translate('edit')?.toUpperCase() ?? "",
                   style: TextStyle(
                     fontFamily:
                         'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -397,16 +384,17 @@ class _CompteTabState extends State<CompteTab> {
               onPressed: () {
                 // Handle appointment scheduling here
               },
-              child: Text('annuler'.toUpperCase(),
-                  style: TextStyle(
-                    fontFamily:
-                        'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15, // 0.9375rem converted to pixels
-                    letterSpacing: 0.4,
-                    color: Color(0xff6D788D), // color: #FFF;
-                    height: 1,
-                  )),
+              child:
+                  Text(localizations.translate('cancel')?.toUpperCase() ?? "",
+                      style: TextStyle(
+                        fontFamily:
+                            'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15, // 0.9375rem converted to pixels
+                        letterSpacing: 0.4,
+                        color: Color(0xff6D788D), // color: #FFF;
+                        height: 1,
+                      )),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 elevation: 0,

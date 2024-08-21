@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login_screen.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   @override
@@ -41,6 +42,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,7 +52,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             Align(
               alignment: Alignment.centerLeft, // Aligns the text to the left
               child: Text(
-                'Mot de passe oublié ? 🔒',
+                localizations.translate('forgot_password_title') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -66,7 +68,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             Align(
               alignment: Alignment.centerLeft, // Aligns the text to the left
               child: Text(
-                'Entrez votre email et nous vous enverrons dans quelques instants les instructions pour renouveller votre email',
+                localizations.translate('forgot_password_description') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -82,7 +84,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             TextField(
               focusNode: _emailFocusNode,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: localizations.translate('email'),
                 labelStyle: TextStyle(
                   color: _emailFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -107,7 +109,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             ElevatedButton(
               onPressed: () {},
               child: Text(
-                'ENVOYER',
+                localizations.translate('send_button') ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -163,7 +165,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   SizedBox(
                       width: 5), // Adds a small space between the icon and text
                   Text(
-                    'Retour à la connexion',
+                    localizations.translate('back_to_login') ?? "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.blue,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rendez_vous/widget/FicheProTab.dart';
 import 'package:rendez_vous/widget/FicheCalendarTab.dart';
 import 'package:rendez_vous/widget/credit_cards_page.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart'; // Import localization
 
 class CustomTab extends StatelessWidget {
   final String text;
@@ -36,11 +37,12 @@ class CustomTab extends StatelessWidget {
 class VoirLaFicheScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return DefaultTabController(
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Voir la Fiche'),
+          title: Text(localizations.translate('view_profile_title') ?? ""),
           bottom: TabBar(
             labelColor: Colors.blue, // Color for selected tab
             unselectedLabelColor:
@@ -48,9 +50,15 @@ class VoirLaFicheScreen extends StatelessWidget {
             indicatorColor: Colors.blue, // Color for the tab indicator
             indicatorWeight: 3.0, // Thickness of the tab indicator
             tabs: [
-              CustomTab(text: 'Fiche Pro', icon: Icons.person),
-              CustomTab(text: 'Calendrier', icon: Icons.calendar_today),
-              CustomTab(text: 'Avis', icon: Icons.star),
+              CustomTab(
+                  text: localizations.translate('profile') ?? "",
+                  icon: Icons.person),
+              CustomTab(
+                  text: localizations.translate('calendar') ?? "",
+                  icon: Icons.calendar_today),
+              CustomTab(
+                  text: localizations.translate('reviews') ?? "",
+                  icon: Icons.star),
             ],
           ),
           backgroundColor: Colors.white, // Background color of the AppBar
@@ -67,89 +75,10 @@ class VoirLaFicheScreen extends StatelessWidget {
   }
 }
 
-// class FicheProTab extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           SizedBox(height: 16.0),
-//           Row(
-//             children: [
-//               CircleAvatar(
-//                 radius: 42,
-//                 child: Icon(Icons.person, size: 50),
-//               ),
-//               SizedBox(width: 16.0),
-//               Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     'Docteur John Doe',
-//                     style: TextStyle(
-//                       fontWeight: FontWeight.bold,
-//                       fontSize: 18,
-//                     ),
-//                   ),
-//                   SizedBox(height: .0),
-//                   Text(
-//                     'Chirurgien dentiste',
-//                     style: TextStyle(fontSize: 16, color: Colors.grey),
-//                   ),
-//                   SizedBox(height: 4.0),
-//                   ElevatedButton(
-//                     onPressed: () {
-//                       // Handle appointment scheduling here
-//                     },
-//                     child: Text('PRENDRE RENDEZ-VOUS',
-//                         style: TextStyle(
-//                           fontFamily:
-//                               'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-//                           fontWeight: FontWeight.w500,
-//                           fontSize: 15, // 0.9375rem converted to pixels
-//                           letterSpacing: 0.4,
-//                           color: Colors.white, // color: #FFF;
-//                           height: 1,
-//                         )),
-//                     style: ElevatedButton.styleFrom(
-//                       backgroundColor: Colors.blue,
-//                       minimumSize: Size(250, 40),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius:
-//                             BorderRadius.circular(8), // border-radius: 8px;
-//                       ),
-//                       padding: EdgeInsets.symmetric(
-//                           horizontal: 24.0, vertical: 12.0),
-//                       textStyle: TextStyle(fontSize: 16),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//           SizedBox(height: 20.0), // Space between the button and divider
-//           Divider(
-//             color: Color(0xFFe9e9ec), // Color of the divider
-//             thickness: 1.0, // Thickness of the divider
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-class CalendrierTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Content for Calendrier'));
-  }
-}
-
 class AvisTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Card(
         color: Colors.white,
@@ -173,7 +102,7 @@ class AvisTab extends StatelessWidget {
                           .start, // Aligns children to the start of the cross axis
                       children: [
                         Text(
-                          'Congratulations John! 🎉',
+                          localizations.translate('congratulations') ?? "",
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500,
@@ -203,7 +132,7 @@ class AvisTab extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 child: Text(
-                  'PRENDRE RENDEZ-VOUS',
+                  localizations.translate('take_appointment') ?? "",
                   style: TextStyle(
                     fontFamily:
                         'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

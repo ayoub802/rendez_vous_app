@@ -3,6 +3,7 @@ import 'package:rendez_vous/widget/CustomDrawer.dart';
 import 'package:rendez_vous/widget/RendezVous.dart';
 import './widget/NotificationsCard.dart';
 import 'package:intl/intl.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -25,6 +26,7 @@ class _MyHomePageState extends State<DashboardScreen> {
   }
 
   void _showSearchModal(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -40,7 +42,9 @@ class _MyHomePageState extends State<DashboardScreen> {
               DropdownButtonFormField<String>(
                 focusNode: _metierFocusNode,
                 decoration: InputDecoration(
-                  labelText: 'Métiers',
+                  labelText:
+                      AppLocalizations.of(context)?.translate('job_label') ??
+                          '',
                   labelStyle: TextStyle(
                     color:
                         _metierFocusNode.hasFocus ? Colors.blue : Colors.grey,
@@ -76,7 +80,9 @@ class _MyHomePageState extends State<DashboardScreen> {
               DropdownButtonFormField<String>(
                 focusNode: _localisationFocusNode,
                 decoration: InputDecoration(
-                  labelText: 'Localisation',
+                  labelText: AppLocalizations.of(context)
+                          ?.translate('location_label') ??
+                      '',
                   labelStyle: TextStyle(
                     color: _localisationFocusNode.hasFocus
                         ? Colors.blue
@@ -114,7 +120,9 @@ class _MyHomePageState extends State<DashboardScreen> {
                 focusNode: _dateFocusNode,
                 controller: _dateController,
                 decoration: InputDecoration(
-                  labelText: 'Date',
+                  labelText:
+                      AppLocalizations.of(context)?.translate('date_label') ??
+                          '',
                   labelStyle: TextStyle(
                     color: _dateFocusNode.hasFocus ? Colors.blue : Colors.grey,
                   ),
@@ -208,9 +216,10 @@ class _MyHomePageState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tableau de board'),
+        title: Text(localizations.translate('dashboard_title') ?? ""),
         backgroundColor: Color(0xFFF7F7F9), // Background color for the AppBar
         elevation: 0,
         actions: [

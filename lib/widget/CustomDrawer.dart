@@ -62,6 +62,38 @@ class CustomDrawer extends StatelessWidget {
               // Handle navigation to FAQ
             },
           ),
+          // ListTile(
+          //   leading: Icon(Icons.language),
+          //   title: Text('English'),
+          //   trailing: Radio<Locale>(
+          //     value: Locale('en'),
+          //     groupValue: currentLocale,
+          //     onChanged: (Locale? value) {
+          //       if (value != null) {
+          //         _changeLanguage(value);
+          //       }
+          //     },
+          //   ),
+          //   onTap: () {
+          //     _changeLanguage(Locale('en'));
+          //   },
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.language),
+          //   title: Text('Français'),
+          //   trailing: Radio<Locale>(
+          //     value: Locale('fr'),
+          //     groupValue: currentLocale,
+          //     onChanged: (Locale? value) {
+          //       if (value != null) {
+          //         _changeLanguage(value);
+          //       }
+          //     },
+          //   ),
+          //   onTap: () {
+          //     _changeLanguage(Locale('fr'));
+          //   },
+          // ),
           Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),

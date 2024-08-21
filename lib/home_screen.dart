@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 import 'login_screen.dart';
 import 'inscriptions.dart';
 import 'package:intl/intl.dart';
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)?.locale ?? Locale('en');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -62,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               ),
               child: Text(
-                'Connexion',
+                AppLocalizations.of(context)?.translate('login_button') ?? '',
                 style: TextStyle(
                   color: Colors.blue, // Text color
                 ),
@@ -87,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               ),
               child: Text(
-                'S\'enregistrer',
+                AppLocalizations.of(context)?.translate('signup_button') ?? '',
                 style: TextStyle(
                   color: Colors.white, // Text color
                 ),
@@ -115,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Gérez Facilement\nVos Rendez-Vous',
+                    AppLocalizations.of(context)?.translate('title') ?? '',
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -124,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Economisez votre temps et\nconcentrez-vous sur votre métier',
+                    AppLocalizations.of(context)?.translate('subtitle') ?? '',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white70,
@@ -142,7 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         DropdownButtonFormField<String>(
                           focusNode: _metierFocusNode,
                           decoration: InputDecoration(
-                            labelText: 'Métiers',
+                            labelText: AppLocalizations.of(context)
+                                    ?.translate('job_label') ??
+                                '',
                             labelStyle: TextStyle(
                               color: _metierFocusNode.hasFocus
                                   ? Colors.blue // Color when focused
@@ -185,7 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Colors.blue // Color when focused
                                   : Colors.grey, // Color when not focused
                             ),
-                            labelText: 'Localisation',
+                            labelText: AppLocalizations.of(context)
+                                    ?.translate('location_label') ??
+                                '',
                             contentPadding: EdgeInsets.only(
                               left: 15,
                               top: 19,
@@ -224,7 +230,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Colors.blue // Color when focused
                                   : Colors.grey, // Color when not focused
                             ),
-                            labelText: 'Date',
+                            labelText: AppLocalizations.of(context)
+                                    ?.translate('date_label') ??
+                                '',
                             contentPadding: EdgeInsets.only(
                               left: 15,
                               top: 19,
@@ -250,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2000),
                               lastDate: DateTime(2101),
-                              locale: const Locale('fr', ''),
+                              locale: locale,
                               builder: (BuildContext context, Widget? child) {
                                 return Theme(
                                   data: ThemeData.light().copyWith(
@@ -319,7 +327,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(Icons.search, color: Colors.white),
                               SizedBox(width: 8),
                               Text(
-                                'Rechercher',
+                                AppLocalizations.of(context)
+                                        ?.translate('search_button') ??
+                                    '',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
@@ -342,7 +352,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '123 Health Lane\nCitysville, State 56789\nGoma - RDC',
+                    AppLocalizations.of(context)?.translate('address') ??
+                        '123 Health Lane\nCitysville, State 56789\nGoma - RDC',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -350,7 +361,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'RENDEZ-VOUS.SN Mensarum enim voragines et varias voluptatum inlecebras, ne longius progrediar.',
+                    AppLocalizations.of(context)?.translate('description_1') ??
+                        'RENDEZ-VOUS.SN Mensarum enim voragines et varias voluptatum inlecebras, ne longius progrediar.',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.black87,
@@ -358,7 +370,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Praetermitto illuc transiturus quod quidam per ampla spatia urbis subversasque silices sine periculi metu properantes equos velut publicos signatis quod dicitur calceis agitant.',
+                    AppLocalizations.of(context)?.translate('description_2') ??
+                        'Praetermitto illuc transiturus quod quidam per ampla spatia urbis subversasque silices sine periculi metu properantes equos velut publicos signatis quod dicitur calceis agitant.',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.black87,
