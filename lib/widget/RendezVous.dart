@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class AppointmentsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Card(
       elevation: 0,
       margin: EdgeInsets.all(0),
@@ -13,7 +15,7 @@ class AppointmentsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 16.0, left: 16.0),
             child: Text(
-              'Mes rendez-vous',
+              localizations.translate('tab_my_appointments') ?? "",
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 20.0, // 1.25rem = 20px

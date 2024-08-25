@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class PaimentTab extends StatefulWidget {
   @override
@@ -115,6 +116,7 @@ class _PaimentTabState extends State<PaimentTab> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
@@ -157,8 +159,10 @@ class _PaimentTabState extends State<PaimentTab> {
                                 );
                               }).toList(),
                               decoration: InputDecoration(
-                                labelText: 'Métier',
-                                hintText: 'Métier',
+                                labelText:
+                                    localizations.translate('profession') ?? "",
+                                hintText:
+                                    localizations.translate('profession') ?? "",
                                 labelStyle: TextStyle(
                                   color: _metierFocusNode.hasFocus
                                       ? Colors.blue // Color when focused
@@ -191,8 +195,9 @@ class _PaimentTabState extends State<PaimentTab> {
                                       ? Colors.blue // Color when focused
                                       : Colors.grey, // Color when not focused
                                 ),
-                                labelText: 'Date',
-                                hintText: 'Date',
+                                labelText:
+                                    localizations.translate('date') ?? "",
+                                hintText: localizations.translate('date') ?? "",
                                 contentPadding: EdgeInsets.only(
                                   left: 15,
                                   top: 19,
@@ -273,129 +278,129 @@ class _PaimentTabState extends State<PaimentTab> {
                         padding: EdgeInsets.only(left: 10, right: 10),
                         color: Colors.white,
                         child: Text(
-                          'Filters',
+                          localizations.translate('filters') ?? "",
                           style: TextStyle(color: Colors.black, fontSize: 18),
                         ),
                       ),
                     ),
                   ],
                 ),
-                DropdownButtonFormField<String>(
-                  onChanged: (value) {},
-                  focusNode: _metierFocusNode,
-                  items: [
-                    'Admin',
-                    'Author',
-                    'Editor',
-                    'Maintainer',
-                    'Subscriber',
-                  ].map((String category) {
-                    return DropdownMenuItem<String>(
-                      value: category,
-                      child: Text(category),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(
-                    labelText: 'Métier',
-                    labelStyle: TextStyle(
-                      color: _metierFocusNode.hasFocus
-                          ? Colors.blue // Color when focused
-                          : Colors.grey, // Color when not focused
-                    ),
-                    contentPadding: EdgeInsets.only(
-                        left: 15, top: 19, bottom: 19, right: 15),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Color(0xFFe5e7eb)),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16),
-                TextFormField(
-                  focusNode: _dateFocusNode,
-                  controller: _dateController,
-                  decoration: InputDecoration(
-                    labelStyle: TextStyle(
-                      color: _dateFocusNode.hasFocus
-                          ? Colors.blue // Color when focused
-                          : Colors.grey, // Color when not focused
-                    ),
-                    labelText: 'Date',
-                    contentPadding: EdgeInsets.only(
-                      left: 15,
-                      top: 19,
-                      bottom: 19,
-                      right: 15,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Color(0xFFe5e7eb)),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                  ),
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2101),
-                      locale: const Locale('fr', ''),
-                      builder: (BuildContext context, Widget? child) {
-                        return Theme(
-                          data: ThemeData.light().copyWith(
-                            // Customize the primary color (used for selected date)
-                            colorScheme: ColorScheme.light(
-                              primary: Colors.blue, // selected date color
-                              onPrimary: Colors
-                                  .white, // text color of the selected date
-                              surface: Colors
-                                  .white, // background color of the date picker
-                            ),
-                            dialogBackgroundColor:
-                                Colors.green, // background color of the dialog
+                // DropdownButtonFormField<String>(
+                //   onChanged: (value) {},
+                //   focusNode: _metierFocusNode,
+                //   items: [
+                //     'Admin',
+                //     'Author',
+                //     'Editor',
+                //     'Maintainer',
+                //     'Subscriber',
+                //   ].map((String category) {
+                //     return DropdownMenuItem<String>(
+                //       value: category,
+                //       child: Text(category),
+                //     );
+                //   }).toList(),
+                //   decoration: InputDecoration(
+                //     labelText: 'Métier',
+                //     labelStyle: TextStyle(
+                //       color: _metierFocusNode.hasFocus
+                //           ? Colors.blue // Color when focused
+                //           : Colors.grey, // Color when not focused
+                //     ),
+                //     contentPadding: EdgeInsets.only(
+                //         left: 15, top: 19, bottom: 19, right: 15),
+                //     enabledBorder: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Color(0xFFe5e7eb)),
+                //     ),
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Colors.white),
+                //     ),
+                //     focusedBorder: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Colors.blue),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 16),
+                // TextFormField(
+                //   focusNode: _dateFocusNode,
+                //   controller: _dateController,
+                //   decoration: InputDecoration(
+                //     labelStyle: TextStyle(
+                //       color: _dateFocusNode.hasFocus
+                //           ? Colors.blue // Color when focused
+                //           : Colors.grey, // Color when not focused
+                //     ),
+                //     labelText: 'Date',
+                //     contentPadding: EdgeInsets.only(
+                //       left: 15,
+                //       top: 19,
+                //       bottom: 19,
+                //       right: 15,
+                //     ),
+                //     enabledBorder: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Color(0xFFe5e7eb)),
+                //     ),
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Colors.white),
+                //     ),
+                //     focusedBorder: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(12),
+                //       borderSide: BorderSide(color: Colors.blue),
+                //     ),
+                //   ),
+                //   onTap: () async {
+                //     DateTime? pickedDate = await showDatePicker(
+                //       context: context,
+                //       initialDate: DateTime.now(),
+                //       firstDate: DateTime(2000),
+                //       lastDate: DateTime(2101),
+                //       locale: const Locale('fr', ''),
+                //       builder: (BuildContext context, Widget? child) {
+                //         return Theme(
+                //           data: ThemeData.light().copyWith(
+                //             // Customize the primary color (used for selected date)
+                //             colorScheme: ColorScheme.light(
+                //               primary: Colors.blue, // selected date color
+                //               onPrimary: Colors
+                //                   .white, // text color of the selected date
+                //               surface: Colors
+                //                   .white, // background color of the date picker
+                //             ),
+                //             dialogBackgroundColor:
+                //                 Colors.green, // background color of the dialog
 
-                            textButtonTheme: TextButtonThemeData(
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors
-                                    .transparent, // remove the footer buttons
-                              ),
-                            ),
-                            // Remove the divider between header and calendar
-                            dividerColor: Colors.transparent,
-                          ),
-                          child: child != null
-                              ? Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    // Display the date picker without the default title
-                                    Flexible(child: child),
-                                  ],
-                                )
-                              : Container(),
-                        );
-                      },
-                    );
-                    if (pickedDate != null) {
-                      _dateController.text =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                    }
-                  },
-                ),
+                //             textButtonTheme: TextButtonThemeData(
+                //               style: TextButton.styleFrom(
+                //                 backgroundColor: Colors
+                //                     .transparent, // remove the footer buttons
+                //               ),
+                //             ),
+                //             // Remove the divider between header and calendar
+                //             dividerColor: Colors.transparent,
+                //           ),
+                //           child: child != null
+                //               ? Column(
+                //                   mainAxisSize: MainAxisSize.min,
+                //                   children: [
+                //                     // Display the date picker without the default title
+                //                     Flexible(child: child),
+                //                   ],
+                //                 )
+                //               : Container(),
+                //         );
+                //       },
+                //     );
+                //     if (pickedDate != null) {
+                //       _dateController.text =
+                //           DateFormat('yyyy-MM-dd').format(pickedDate);
+                //     }
+                //   },
+                // ),
                 SizedBox(height: 16),
                 DropdownButtonFormField<String>(
                   onChanged: (value) {},
@@ -415,7 +420,7 @@ class _PaimentTabState extends State<PaimentTab> {
                     );
                   }).toList(),
                   decoration: InputDecoration(
-                    labelText: 'Action',
+                    labelText: localizations.translate('action') ?? "",
                     labelStyle: TextStyle(
                       color: _servicesFocusNode.hasFocus
                           ? Colors.blue // Color when focused
@@ -446,7 +451,8 @@ class _PaimentTabState extends State<PaimentTab> {
                       width: double.maxFinite,
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: 'Chercher un paiement',
+                          hintText:
+                              localizations.translate('search_payment') ?? "",
                           hintStyle: TextStyle(
                             color: Colors.grey, // Color when not focused
                           ),
@@ -471,16 +477,17 @@ class _PaimentTabState extends State<PaimentTab> {
                       onPressed: () {
                         // Handle search action here
                       },
-                      child: Text("demander un paiement".toUpperCase(),
-                          style: TextStyle(
-                            fontFamily:
-                                'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15, // 0.9375rem converted to pixels
-                            letterSpacing: 0.4,
-                            color: Color(0xffffffff), // color: #FFF;
-                            height: 1,
-                          )),
+                      child:
+                          Text(localizations.translate('request_payment') ?? "",
+                              style: TextStyle(
+                                fontFamily:
+                                    'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15, // 0.9375rem converted to pixels
+                                letterSpacing: 0.4,
+                                color: Color(0xffffffff), // color: #FFF;
+                                height: 1,
+                              )),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(double.infinity, 50),
                         backgroundColor: Colors.blue,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class NotificationTab extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class _NotificationTabState extends State<NotificationTab> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12),
@@ -29,7 +32,7 @@ class _NotificationTabState extends State<NotificationTab> {
               ),
               SizedBox(width: 10.0),
               Text(
-                'Activité',
+                localizations.translate('activity') ?? "",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -40,7 +43,8 @@ class _NotificationTabState extends State<NotificationTab> {
           SizedBox(height: 15.0),
           SwitchListTile(
             title: Text(
-              'Envoyer un email de confirmation quand un rendez-vous est modifié',
+              localizations.translate('send_confirmation_email_on_changed') ??
+                  "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -62,7 +66,8 @@ class _NotificationTabState extends State<NotificationTab> {
           ),
           SwitchListTile(
             title: Text(
-              'Envoyer un email de confirmation quand un rendez-vous est supprimé',
+              localizations.translate('send_confirmation_email_on_deleted') ??
+                  "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -84,7 +89,8 @@ class _NotificationTabState extends State<NotificationTab> {
           ),
           SwitchListTile(
             title: Text(
-              'Envoyer un email pour valider un rendez-vous',
+              localizations.translate('send_email_to_validate_appointment') ??
+                  "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -118,7 +124,7 @@ class _NotificationTabState extends State<NotificationTab> {
               ),
               SizedBox(width: 10.0),
               Text(
-                'Application',
+                localizations.translate('application') ?? "",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -129,7 +135,7 @@ class _NotificationTabState extends State<NotificationTab> {
           SizedBox(height: 15.0),
           SwitchListTile(
             title: Text(
-              'M\'envoyer des communications des partenaires',
+              localizations.translate('receive_partner_communications') ?? "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -151,7 +157,7 @@ class _NotificationTabState extends State<NotificationTab> {
           ),
           SwitchListTile(
             title: Text(
-              'M\'informer des nouveautés',
+              localizations.translate('inform_about_news') ?? "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -173,7 +179,8 @@ class _NotificationTabState extends State<NotificationTab> {
           ),
           SwitchListTile(
             title: Text(
-              'M\'informer des professionnels proches de moi',
+              localizations.translate('inform_about_nearby_professionals') ??
+                  "",
               style: TextStyle(
                 fontFamily:
                     'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -198,7 +205,7 @@ class _NotificationTabState extends State<NotificationTab> {
             onPressed: () {
               // Handle appointment scheduling here
             },
-            child: Text('sauvegarder'.toUpperCase(),
+            child: Text(localizations.translate('save')?.toUpperCase() ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -223,7 +230,7 @@ class _NotificationTabState extends State<NotificationTab> {
             onPressed: () {
               // Handle appointment scheduling here
             },
-            child: Text('annuler'.toUpperCase(),
+            child: Text(localizations.translate('cancel')?.toUpperCase() ?? "",
                 style: TextStyle(
                   fontFamily:
                       'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

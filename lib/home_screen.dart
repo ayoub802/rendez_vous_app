@@ -15,6 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
   FocusNode _localisationFocusNode = FocusNode();
   FocusNode _dateFocusNode = FocusNode(); // New FocusNode for bio
   TextEditingController _dateController = TextEditingController();
+  final List<String> _jobOptions = ['Dentiste', 'Médecin', 'Infirmier'];
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -141,44 +143,145 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Column(
                       children: [
-                        DropdownButtonFormField<String>(
-                          focusNode: _metierFocusNode,
-                          decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)
-                                    ?.translate('job_label') ??
-                                '',
-                            labelStyle: TextStyle(
-                              color: _metierFocusNode.hasFocus
-                                  ? Colors.blue // Color when focused
-                                  : Colors.grey, // Color when not focused
-                            ),
-                            contentPadding: EdgeInsets.only(
-                              left: 15,
-                              top: 19,
-                              bottom: 19,
-                              right: 15,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Color(0xFFe5e7eb)),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-                          items: ['Dentiste', 'Médecin', 'Infirmier']
-                              .map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+                        // DropdownButtonFormField<String>(
+                        //   focusNode: _metierFocusNode,
+                        //   decoration: InputDecoration(
+                        //     labelText: AppLocalizations.of(context)
+                        //             ?.translate('job_label') ??
+                        //         '',
+                        //     labelStyle: TextStyle(
+                        //       color: _metierFocusNode.hasFocus
+                        //           ? Colors.blue // Color when focused
+                        //           : Colors.grey, // Color when not focused
+                        //     ),
+                        //     contentPadding: EdgeInsets.only(
+                        //       left: 15,
+                        //       top: 19,
+                        //       bottom: 19,
+                        //       right: 15,
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(12),
+                        //       borderSide: BorderSide(color: Color(0xFFe5e7eb)),
+                        //     ),
+                        //     border: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(12),
+                        //       borderSide: BorderSide(color: Colors.white),
+                        //     ),
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(12),
+                        //       borderSide: BorderSide(color: Colors.blue),
+                        //     ),
+                        //   ),
+                        //   items: ['Dentiste', 'Médecin', 'Infirmier']
+                        //       .map((String value) {
+                        //     return DropdownMenuItem<String>(
+                        //       value: value,
+                        //       child: Text(value),
+                        //     );
+                        //   }).toList(),
+                        //   onChanged: (String? newValue) {},
+                        // ),
+                        Autocomplete<String>(
+                          optionsBuilder: (TextEditingValue textEditingValue) {
+                            if (textEditingValue.text.isEmpty) {
+                              return const Iterable<String>.empty();
+                            }
+                            return _jobOptions.where((String option) {
+                              return option.toLowerCase().contains(
+                                  textEditingValue.text.toLowerCase());
+                            });
+                          },
+                          fieldViewBuilder: (BuildContext context,
+                              TextEditingController textEditingController,
+                              FocusNode focusNode,
+                              VoidCallback onFieldSubmitted) {
+                            return TextFormField(
+                              controller: textEditingController,
+                              focusNode: focusNode,
+                              decoration: InputDecoration(
+                                labelText: 'Job',
+                                labelStyle: TextStyle(
+                                  color: _metierFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.grey,
+                                ),
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 19,
+                                  horizontal: 15,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide:
+                                      BorderSide(color: Color(0xFFe5e7eb)),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                              ),
                             );
-                          }).toList(),
-                          onChanged: (String? newValue) {},
+                          },
+                          optionsViewBuilder: (BuildContext context,
+                              AutocompleteOnSelected<String> onSelected,
+                              Iterable<String> options) {
+                            final List<String> filteredOptions =
+                                options.toList();
+
+                            if (filteredOptions.isEmpty) {
+                              return Align(
+                                alignment: Alignment.topLeft,
+                                child: Material(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.8, // Customize width
+                                    child: Center(
+                                      child: Text(
+                                        'No Results Found',
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: Material(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.8, // Customize width
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: filteredOptions.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      final String option =
+                                          filteredOptions[index];
+                                      return InkWell(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: ListTile(
+                                          title: Text(option),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          onSelected: (String selection) {
+                            _textEditingController.text = selection;
+                            print('You just selected $selection');
+                          },
                         ),
                         SizedBox(height: 16),
                         DropdownButtonFormField<String>(

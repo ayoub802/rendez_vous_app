@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rendez_vous/l10n/app_localizations.dart';
 
 class SecuriteTab extends StatefulWidget {
   @override
@@ -61,6 +62,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -73,7 +75,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
               focusNode: _passwordFocusNode,
               obscureText: !_isPasswordVisible,
               decoration: InputDecoration(
-                labelText: 'Mot de passe actuel',
+                labelText: localizations.translate('current_password'),
                 labelStyle: TextStyle(
                   color: _passwordFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -111,7 +113,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
               focusNode: _telephoneFocusNode,
               obscureText: !_isPasswordVisible,
               decoration: InputDecoration(
-                labelText: 'Nouveau mot de passe',
+                labelText: localizations.translate('new_password'),
                 labelStyle: TextStyle(
                   color: _telephoneFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -149,7 +151,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
               focusNode: _moyenFocusNode,
               obscureText: !_isPasswordVisible,
               decoration: InputDecoration(
-                labelText: 'confirmer mot de passe',
+                labelText: localizations.translate('confirm_password'),
                 labelStyle: TextStyle(
                   color: _moyenFocusNode.hasFocus
                       ? Colors.blue // Color when focused
@@ -202,7 +204,8 @@ class _SecuriteTabState extends State<SecuriteTab> {
                       ),
                       SizedBox(width: 15.0),
                       Text(
-                        'Authentication à deux facteurs',
+                        localizations.translate('two_factor_authentication') ??
+                            "",
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -228,7 +231,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    "l'authentification à deux facteurs n'est pas activé",
+                    localizations.translate('two_factor_not_enabled') ?? "",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
@@ -237,7 +240,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "L'authentication à deux facteurs ajoute une couche supplémentaire de sécurité pour votre compte en exigeant plus qu'un simple mot de passe pour vous connecter. En savoir plus.",
+                    localizations.translate('two_factor_description') ?? "",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[600],
@@ -250,7 +253,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
               onPressed: () {
                 // Handle appointment scheduling here
               },
-              child: Text('modifier'.toUpperCase(),
+              child: Text(localizations.translate('modify')!.toUpperCase(),
                   style: TextStyle(
                     fontFamily:
                         'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -275,7 +278,7 @@ class _SecuriteTabState extends State<SecuriteTab> {
               onPressed: () {
                 // Handle appointment scheduling here
               },
-              child: Text('annuler'.toUpperCase(),
+              child: Text(localizations.translate('cancel')!.toUpperCase(),
                   style: TextStyle(
                     fontFamily:
                         'Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

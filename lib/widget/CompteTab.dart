@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rendez_vous/l10n/app_localizations.dart';
+import 'package:image_picker/image_picker.dart'; // Import the image_picker package
+import 'dart:io'; // Import dart:io to work with files
 
 class CompteTab extends StatefulWidget {
   @override
@@ -17,7 +19,9 @@ class _CompteTabState extends State<CompteTab> {
   FocusNode _list2FocusNode = FocusNode(); // New FocusNode for bio
   String? _selectedOption; // To hold the selected value from dropdown
   String? _selectedOption1; // To hold the selected value from dropdown
+  File? _imageFile; // Variable to hold the selected image
 
+  final ImagePicker _picker = ImagePicker();
   @override
   void initState() {
     super.initState();
@@ -56,6 +60,22 @@ class _CompteTabState extends State<CompteTab> {
     super.dispose();
   }
 
+  Future<void> _pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  void _deleteImage() {
+    setState(() {
+      _imageFile = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
@@ -72,7 +92,10 @@ class _CompteTabState extends State<CompteTab> {
               children: [
                 CircleAvatar(
                   radius: 42,
-                  child: Icon(Icons.person, size: 50),
+                  backgroundImage:
+                      _imageFile != null ? FileImage(_imageFile!) : null,
+                  child:
+                      _imageFile == null ? Icon(Icons.person, size: 50) : null,
                 ),
                 SizedBox(width: 16.0),
                 Column(
@@ -80,9 +103,7 @@ class _CompteTabState extends State<CompteTab> {
                   children: [
                     SizedBox(height: 4.0),
                     ElevatedButton(
-                      onPressed: () {
-                        // Handle appointment scheduling here
-                      },
+                      onPressed: _pickImage,
                       child: Text(
                           localizations
                                   .translate('upload_photo')
@@ -111,9 +132,7 @@ class _CompteTabState extends State<CompteTab> {
                     ),
                     SizedBox(height: 2.0),
                     ElevatedButton(
-                      onPressed: () {
-                        // Handle appointment scheduling here
-                      },
+                      onPressed: _deleteImage,
                       child: Text(
                           localizations.translate('delete')?.toUpperCase() ??
                               "",
@@ -338,15 +357,19 @@ class _CompteTabState extends State<CompteTab> {
                     ),
                     ButtonBar(
                       children: <Widget>[
-                        TextButton(
-                          child: Text(
-                              localizations.translate('resend_confirmation') ??
-                                  "",
-                              style: TextStyle(color: Color(0xffFDB528))),
-                          onPressed: () {
-                            // Insert your resend confirmation logic here
-                            print('Resend email clicked');
-                          },
+                        Center(
+                          child: TextButton(
+                            child: Text(
+                                localizations
+                                        .translate('resend_confirmation') ??
+                                    "",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Color(0xffFDB528))),
+                            onPressed: () {
+                              // Insert your resend confirmation logic here
+                              print('Resend email clicked');
+                            },
+                          ),
                         ),
                       ],
                     ),
